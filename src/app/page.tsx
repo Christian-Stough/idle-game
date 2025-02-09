@@ -1,5 +1,8 @@
 import { auth } from "~/server/auth";
 import { SignInButton, SignOutButton } from "./_components/auth-buttons";
+import { doesUserExist } from "~/server/account/exist";
+import { createUserTables } from "~/server/account/create";
+import { getSkills } from "~/server/skills/get";
 
 export default async function HomePage() {
   const session = await auth();
@@ -11,9 +14,19 @@ export default async function HomePage() {
       </main>
     );
 
+  const userExists = await doesUserExist(session.user.id);
+
+  if (!userExists) await createUserTables(session.user.id);
+
+  const skills = await getSkills(session.user.id);
+
   return (
-    <main className="h-screen w-full bg-neutral-200">
-      {session.user.name} <SignOutButton />
+    <main className="flex h-screen w-full flex-col gap-2 bg-neutral-200">
+      {session.user.name}
+      <SignOutButton />
+      <div className="flex gap-2">
+        Woodcutting: {skills?.woodcutting_xp.toString()}
+      </div>
     </main>
   );
 }
