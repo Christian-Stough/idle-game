@@ -1,10 +1,11 @@
 "use server";
 
+import type { SkillTypes } from "types/skills";
 import { db } from "../db";
 
 export async function addXpToSkill(
   id: string,
-  skill: "woodcutting",
+  skill: SkillTypes,
   amount: number,
 ) {
   let key: string;
