@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogOut, MoonIcon, SunIcon } from "lucide-react";
 import type { User } from "next-auth";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
@@ -20,6 +20,7 @@ import {
 } from "~/components/ui/sidebar";
 
 import { serverSignOut } from "./signout-action";
+import { useTheme } from "next-themes";
 
 export function NavUser({
   user,
@@ -29,6 +30,8 @@ export function NavUser({
   total_level: number;
 }) {
   const { isMobile } = useSidebar();
+
+  const { theme, setTheme } = useTheme();
 
   return (
     <SidebarMenu>
@@ -75,6 +78,23 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => {
+                setTheme(theme === "dark" ? "light" : "dark");
+              }}
+            >
+              {theme === "dark" ? (
+                <>
+                  <SunIcon />
+                  Light Mode
+                </>
+              ) : (
+                <>
+                  <MoonIcon />
+                  Dark Mode
+                </>
+              )}
+            </DropdownMenuItem>
 
             <DropdownMenuItem onClick={serverSignOut}>
               <LogOut />

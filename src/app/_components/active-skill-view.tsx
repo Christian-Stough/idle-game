@@ -5,12 +5,9 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
-  CardHeader,
   CardTitle,
 } from "~/components/ui/card";
 
-import Image from "next/image";
 import { useSkillsContext } from "../_store/_context";
 import { Progress } from "~/components/ui/progress";
 import { useEffect, useState } from "react";

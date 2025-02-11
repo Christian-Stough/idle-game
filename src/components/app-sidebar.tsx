@@ -5,7 +5,6 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenuButton,
-  SidebarMenuItem,
   SidebarSeparator,
 } from "~/components/ui/sidebar";
 import { NavUser } from "./nav-user";
@@ -27,7 +26,7 @@ export async function AppSidebar() {
 
   return (
     <Sidebar
-      className="w-[300px] border-r border-neutral-300 bg-card"
+      className="w-[300px] border-r border-neutral-300 bg-card dark:border-neutral-800"
       collapsible="none"
     >
       <SidebarHeader>
