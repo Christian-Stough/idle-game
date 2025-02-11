@@ -4,7 +4,6 @@ import TrainingActivity from "./training-activity";
 import { woodcutting_activities } from "~/server/skills/skill-list";
 import StopButton from "./stop-button";
 import { useSkillsContext } from "../_store/_context";
-import { useEffect } from "react";
 
 export function Woodcutting({ id }: { id: string }) {
   const skills = useSkillsContext((state) => state.skills);

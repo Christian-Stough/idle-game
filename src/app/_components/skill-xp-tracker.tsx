@@ -50,7 +50,11 @@ export default function SkillXpTracker() {
         >
           {active_skill_xp}/{next_level_xp}
         </div>
-        <Progress className="h-6 rounded-sm" value={progress} />
+        <Progress
+          className="h-6 rounded-sm"
+          value={progress}
+          barClassName="bg-blue-500 "
+        />
       </div>
     </div>
   );

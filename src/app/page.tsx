@@ -10,7 +10,7 @@ export default async function HomePage() {
 
   if (!session)
     return (
-      <main className="h-screen w-full bg-neutral-200">
+      <main className="flex h-screen w-full flex-col items-center justify-center gap-4">
         <SignInButton />
       </main>
     );
@@ -23,11 +23,5 @@ export default async function HomePage() {
 
   if (!skills) return null;
 
-  return (
-    <main className="flex h-screen w-full flex-col gap-2">
-      {session.user.name}
-      <SignOutButton />
-      <Woodcutting id={session.user.id} />
-    </main>
-  );
+  return <main className="flex h-screen w-full flex-col gap-2"></main>;
 }

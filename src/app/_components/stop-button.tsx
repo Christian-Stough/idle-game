@@ -13,10 +13,10 @@ export default function StopButton() {
     <Button
       onClick={stop}
       disabled={!active_skill}
-      variant="destructive"
-      className="w-[350px] capitalize"
+      variant="outline"
+      className="w-[200px] bg-transparent capitalize"
     >
-      {!active_skill ? "Nothing Running" : `Stop ${active_skill.name}`}
+      {!active_skill ? "Nothing Running" : `Stop Training`}
     </Button>
   );
 }

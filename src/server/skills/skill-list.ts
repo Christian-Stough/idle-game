@@ -10,7 +10,7 @@ export const woodcutting_activities: TrainingActivity[] = [
     required_xp: 0,
     interval: 5000,
     image_url:
-      "https://cdn.pixabay.com/photo/2016/11/29/05/45/aerial-1867093_960_720.jpg",
+      "https://images.unsplash.com/photo-1458966480358-a0ac42de0a7a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const woodcutting_activities: TrainingActivity[] = [
     required_xp: 10000,
     interval: 5000,
     image_url:
-      "https://cdn.pixabay.com/photo/2016/11/29/05/45/aerial-1867093_960_720.jpg",
+      "https://images.unsplash.com/photo-1458966480358-a0ac42de0a7a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 

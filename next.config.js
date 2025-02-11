@@ -12,7 +12,7 @@ const config = {
         hostname: "oldschool.runescape.wiki",
       },
       {
-        hostname: "cdn.pixabay.com",
+        hostname: "images.unsplash.com",
       },
     ],
   },
