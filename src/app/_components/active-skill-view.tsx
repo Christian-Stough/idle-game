@@ -33,7 +33,7 @@ export default function ActiveSkillView({ progress }: { progress: number }) {
             <CardTitle className="text-2xl capitalize">
               {active_skill.action_word} {active_skill.name}
             </CardTitle>
-            <CardDescription>{xp_per_hour} xp/hour</CardDescription>
+            <CardDescription>{xp_per_hour.toFixed(0)} xp/hour</CardDescription>
           </div>
           {active_skill && <StopButton />}
         </div>

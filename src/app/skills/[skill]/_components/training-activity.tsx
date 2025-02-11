@@ -52,7 +52,7 @@ export default function TrainingActivity({
       <div className="flex flex-col items-start justify-between">
         <div className="text-xl">{activity.name}</div>
         <div className="text-xs text-neutral-400 dark:text-neutral-500">
-          {unlocked ? `${xp_per_hour} xp/hour` : "???? xp/hour"}
+          {unlocked ? `${xp_per_hour.toFixed(0)} xp/hour` : "???? xp/hour"}
         </div>
       </div>
     </button>
