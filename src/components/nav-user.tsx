@@ -21,17 +21,19 @@ import {
 
 import { serverSignOut } from "./signout-action";
 import { useTheme } from "next-themes";
+import { useSkillsContext } from "~/app/_store/_context";
+import { getCurrentLevel } from "~/lib/utils";
 
-export function NavUser({
-  user,
-  total_level,
-}: {
-  user: User;
-  total_level: number;
-}) {
+export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar();
 
   const { theme, setTheme } = useTheme();
+
+  const skills = useSkillsContext((state) => state.skills);
+
+  const woodcutting_level = getCurrentLevel(skills?.woodcutting ?? 0);
+
+  const total_level = woodcutting_level;
 
   return (
     <SidebarMenu>

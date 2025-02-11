@@ -14,20 +14,6 @@ export default function SkillingInfo() {
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startInterval = () => {
-    if (intervalRef.current) return; // If interval is already running, do nothing
-
-    const interval = active_skill!.interval - 300;
-    const step = 100 / (interval / 100);
-
-    intervalRef.current = setInterval(() => {
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress + step;
-        return newProgress >= 100 ? 0 : newProgress;
-      });
-    }, 100);
-  };
-
   useEffect(() => {
     if (!active_skill) {
       setProgress(0);
@@ -50,6 +36,20 @@ export default function SkillingInfo() {
     const signal = controller.signal;
 
     if (!skills) return;
+
+    const startInterval = () => {
+      if (intervalRef.current) return; // If interval is already running, do nothing
+
+      const interval = active_skill!.interval - 300;
+      const step = 100 / (interval / 100);
+
+      intervalRef.current = setInterval(() => {
+        setProgress((prevProgress) => {
+          const newProgress = prevProgress + step;
+          return newProgress >= 100 ? 0 : newProgress;
+        });
+      }, 100);
+    };
 
     if (active_skill) {
       startInterval();
