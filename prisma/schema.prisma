@@ -71,14 +71,20 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
-model Items {
-    id            String    @id @default(cuid())
-    skill         String
-    name          String  
-    multiplier    Decimal 
-}
-
 model Skills {
     id            String    @id @default(cuid())
-    woodcutting_xp  Decimal @default(0)
+    woodcutting   Int @default(0)
 }
+
+model Items {
+    item_id       Int @id @default(autoincrement())
+    name          String
+    description   String
+}
+
+model Inventory {
+    id            String    @id @default(cuid())
+    item_id       Int
+    quantity      Int
+}
+

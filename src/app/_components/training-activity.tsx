@@ -5,8 +5,9 @@ import React, { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { addXpToSkill } from "~/server/skills/add";
 import type { TrainingActivity } from "~/server/skills/skill-list";
-import { useStore } from "../_store";
+
 import { LockIcon } from "lucide-react";
+import { useSkillsContext } from "../_store/_context";
 
 export default function TrainingActivity({
   xp,
@@ -17,11 +18,9 @@ export default function TrainingActivity({
   user_id: string;
   activity: TrainingActivity;
 }) {
-  const active = useStore((state) => state.active);
-  const active_skill = useStore((state) => state.active_skill);
-  const active_id = useStore((state) => state.active_id);
+  const active_skill = useSkillsContext((state) => state.active_skill);
 
-  const start = useStore((state) => state.start);
+  const start = useSkillsContext((state) => state.start);
 
   function handleActive() {
     start(activity);
@@ -35,7 +34,7 @@ export default function TrainingActivity({
     const controller = new AbortController();
     const signal = controller.signal;
 
-    if (active) {
+    if (active_skill) {
       const skillInterval = setInterval(() => {
         addXpToSkill(user_id, activity.skill, activity.xp)
           .catch(console.error)
@@ -50,22 +49,20 @@ export default function TrainingActivity({
     return () => {
       controller.abort();
     };
-  }, [active, activity, router, user_id]);
+  }, [active_skill, activity, router, user_id]);
 
   return (
     <div>
       <div className="flex flex-col gap-4">
         <Button
-          disabled={active || !unlocked}
+          disabled={active_skill || !unlocked ? true : false}
           className="relative w-[350px] capitalize"
           onClick={handleActive}
         >
           {!unlocked && (
             <LockIcon className="absolute left-2 top-1/2 -translate-y-1/2 transform" />
           )}
-          {active &&
-          active_skill === activity.skill &&
-          active_id === activity.id
+          {active_skill && active_skill === activity
             ? `Working on ${activity.name}...`
             : `Start ${activity.name}`}
         </Button>

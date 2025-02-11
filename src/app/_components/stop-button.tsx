@@ -2,21 +2,21 @@
 
 import React from "react";
 import { Button } from "~/components/ui/button";
-import { useStore } from "../_store";
+
+import { useSkillsContext } from "../_store/_context";
 
 export default function StopButton() {
-  const active = useStore((state) => state.active);
-  const active_skill = useStore((state) => state.active_skill);
-  const stop = useStore((state) => state.stop);
+  const active_skill = useSkillsContext((state) => state.active_skill);
+  const stop = useSkillsContext((state) => state.stop);
 
   return (
     <Button
       onClick={stop}
-      disabled={!active}
+      disabled={!active_skill}
       variant="destructive"
       className="w-[350px] capitalize"
     >
-      {!active ? "Nothing Running" : `Stop ${active_skill}`}
+      {!active_skill ? "Nothing Running" : `Stop ${active_skill.name}`}
     </Button>
   );
 }

@@ -8,19 +8,12 @@ export async function addXpToSkill(
   skill: SkillTypes,
   amount: number,
 ) {
-  let key: string;
-
-  switch (skill) {
-    case "woodcutting":
-      key = "woodcutting_xp";
-  }
-
   await db.skills.update({
     where: {
       id,
     },
     data: {
-      [key]: {
+      [skill]: {
         increment: amount,
       },
     },

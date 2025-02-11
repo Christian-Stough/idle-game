@@ -21,14 +21,13 @@ export default async function HomePage() {
 
   const skills = await getSkills(session.user.id);
 
+  if (!skills) return null;
+
   return (
-    <main className="flex h-screen w-full flex-col gap-2 bg-neutral-200">
+    <main className="flex h-screen w-full flex-col gap-2">
       {session.user.name}
       <SignOutButton />
-      <Woodcutting
-        id={session.user.id}
-        server_xp={skills?.woodcutting_xp.toNumber() ?? -100}
-      />
+      <Woodcutting id={session.user.id} server_xp={skills.woodcutting} />
     </main>
   );
 }
