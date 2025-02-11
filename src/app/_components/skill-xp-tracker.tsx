@@ -53,7 +53,7 @@ export default function SkillXpTracker() {
         <Progress
           className="h-6 rounded-sm"
           value={progress}
-          barClassName="bg-blue-500 "
+          barClassName="bg-blue-500 dark:bg-blue-800 "
         />
       </div>
     </div>

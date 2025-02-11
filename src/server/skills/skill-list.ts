@@ -1,6 +1,6 @@
 import type { SkillTypes } from "types/skills";
 
-export const woodcutting_activities: TrainingActivity[] = [
+const woodcutting_activities: TrainingActivity[] = [
   {
     id: 1,
     name: "Oak Trees",
@@ -34,4 +34,8 @@ export type TrainingActivity = {
   required_xp: number;
   interval: number;
   image_url: string;
+};
+
+export const activities: Record<string, TrainingActivity[]> = {
+  woodcutting: woodcutting_activities,
 };

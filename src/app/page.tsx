@@ -1,9 +1,8 @@
 import { auth } from "~/server/auth";
-import { SignInButton, SignOutButton } from "./_components/auth-buttons";
+import { SignInButton } from "./_components/auth-buttons";
 import { doesUserExist } from "~/server/account/exist";
 import { createUserTables } from "~/server/account/create";
 import { getSkills } from "~/server/skills/get";
-import { Woodcutting } from "./_components/training";
 
 export default async function HomePage() {
   const session = await auth();

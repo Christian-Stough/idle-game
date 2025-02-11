@@ -8,36 +8,12 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 
-import { useSkillsContext } from "../_store/_context";
 import { Progress } from "~/components/ui/progress";
-import { useEffect, useState } from "react";
 import StopButton from "./stop-button";
+import { useSkillsContext } from "../_store/_context";
 
-export default function ActiveSkillView() {
+export default function ActiveSkillView({ progress }: { progress: number }) {
   const active_skill = useSkillsContext((state) => state.active_skill);
-
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (!active_skill) {
-      setProgress(0);
-      return;
-    }
-
-    const interval = active_skill.interval - 400; // account for delay, probably a better solution to this TBH.
-    let start = 0;
-    const step = 100 / (interval / 100);
-
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= 100) {
-        start = 0;
-      }
-      setProgress(start);
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, [active_skill]);
 
   if (!active_skill) return <Card className="h-[104px] w-full"></Card>;
 
@@ -48,8 +24,8 @@ export default function ActiveSkillView() {
       <CardContent className="relative flex items-center pt-6">
         <Progress
           value={progress}
-          className="absolute left-0 h-full w-full rounded-none border border-green-200 bg-card"
-          barClassName="bg-green-100"
+          className="absolute left-0 h-full w-full rounded-none border border-green-200 bg-card dark:border-green-800"
+          barClassName="bg-green-100 dark:bg-green-600/20"
         />
         <div className="item z-10 flex w-full items-center justify-between gap-2">
           <div className="flex flex-col gap-1">

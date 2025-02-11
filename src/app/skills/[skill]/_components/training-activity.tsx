@@ -1,25 +1,23 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "~/components/ui/button";
-import { addXpToServer } from "~/server/skills/add";
+
 import type { TrainingActivity } from "~/server/skills/skill-list";
 
 import { LockIcon } from "lucide-react";
-import { useSkillsContext } from "../_store/_context";
+import { useSkillsContext } from "../../../_store/_context";
 
 export default function TrainingActivity({
-  xp,
-  user_id,
   activity,
 }: {
-  xp: number;
   user_id: string;
   activity: TrainingActivity;
 }) {
   const active_skill = useSkillsContext((state) => state.active_skill);
-  const addToSkill = useSkillsContext((state) => state.addToSkill);
+  const skills = useSkillsContext((state) => state.skills);
+
+  const xp = skills ? skills[activity.skill] : 0;
 
   const start = useSkillsContext((state) => state.start);
 
@@ -27,31 +25,7 @@ export default function TrainingActivity({
     start(activity);
   }
 
-  const router = useRouter();
-
   const unlocked = xp >= activity.required_xp;
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    if (active_skill) {
-      const skillInterval = setInterval(() => {
-        addToSkill(activity.skill, activity.xp);
-        addXpToServer(user_id, activity.skill, activity.xp).catch(
-          console.error,
-        );
-      }, activity.interval);
-
-      signal.addEventListener("abort", () => {
-        clearInterval(skillInterval);
-      });
-    }
-
-    return () => {
-      controller.abort();
-    };
-  }, [active_skill, activity, addToSkill, router, user_id]);
 
   return (
     <div>

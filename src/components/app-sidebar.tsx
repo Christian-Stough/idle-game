@@ -12,6 +12,7 @@ import { auth } from "~/server/auth";
 
 import { BriefcaseIcon, TreePineIcon, UserIcon } from "lucide-react";
 import { getLevels } from "~/server/account/levels";
+import Link from "next/link";
 
 export async function AppSidebar() {
   const session = await auth();
@@ -34,10 +35,12 @@ export async function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarMenuButton className="justify-between">
-            <UserIcon />
-            <span>Character</span>
-          </SidebarMenuButton>
+          <Link href="/" legacyBehavior passHref>
+            <SidebarMenuButton className="justify-between">
+              <UserIcon />
+              <span>Character</span>
+            </SidebarMenuButton>
+          </Link>
           <SidebarMenuButton className="justify-between">
             <BriefcaseIcon />
             <span>Inventory</span>
@@ -48,12 +51,15 @@ export async function AppSidebar() {
           <SidebarGroupLabel className="text-lg text-primary">
             Skills
           </SidebarGroupLabel>
-          <SidebarMenuButton className="justify-between">
-            <div className="flex items-center gap-1">
-              <TreePineIcon /> <span>lvl. {all_levels.woodcutting_level}</span>
-            </div>
-            <span>Woodcutting</span>
-          </SidebarMenuButton>
+          <Link href="/skills/woodcutting" legacyBehavior passHref>
+            <SidebarMenuButton className="justify-between">
+              <div className="flex items-center gap-1">
+                <TreePineIcon />{" "}
+                <span>lvl. {all_levels.woodcutting_level}</span>
+              </div>
+              <span>Woodcutting</span>
+            </SidebarMenuButton>
+          </Link>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
