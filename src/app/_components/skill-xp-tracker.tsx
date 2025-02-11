@@ -1,15 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Progress } from "~/components/ui/progress";
 import { xp_to_levels } from "~/lib/xp-to-level";
 import { getCurrentLevel } from "~/lib/utils";
 import { useSkillsContext } from "../_store/_context";
+import { useConfetti } from "./level-up";
 
 export default function SkillXpTracker() {
   const active_skill = useSkillsContext((state) => state.active_skill);
   const skills = useSkillsContext((state) => state.skills);
+
+  const last_level = useRef<number | null>(null);
+
+  const { triggerConfetti } = useConfetti();
 
   if (!skills) return null;
 
@@ -25,6 +30,12 @@ export default function SkillXpTracker() {
   ] as number;
 
   const current_level = getCurrentLevel(active_skill_xp);
+
+  if (last_level.current === null) last_level.current = current_level;
+  else if (last_level.current !== current_level) {
+    triggerConfetti();
+    last_level.current = current_level;
+  }
 
   const current_level_xp = xp_to_levels.find(
     (level) => level.level === current_level,
