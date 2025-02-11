@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { Button } from "~/components/ui/button";
-import { addXpToSkill } from "~/server/skills/add";
+import { addXpToServer } from "~/server/skills/add";
 import type { TrainingActivity } from "~/server/skills/skill-list";
 
 import { LockIcon } from "lucide-react";
@@ -19,6 +19,7 @@ export default function TrainingActivity({
   activity: TrainingActivity;
 }) {
   const active_skill = useSkillsContext((state) => state.active_skill);
+  const addToSkill = useSkillsContext((state) => state.addToSkill);
 
   const start = useSkillsContext((state) => state.start);
 
@@ -36,9 +37,10 @@ export default function TrainingActivity({
 
     if (active_skill) {
       const skillInterval = setInterval(() => {
-        addXpToSkill(user_id, activity.skill, activity.xp)
-          .catch(console.error)
-          .finally(() => router.refresh());
+        addToSkill(activity.skill, activity.xp);
+        addXpToServer(user_id, activity.skill, activity.xp).catch(
+          console.error,
+        );
       }, activity.interval);
 
       signal.addEventListener("abort", () => {
@@ -49,7 +51,7 @@ export default function TrainingActivity({
     return () => {
       controller.abort();
     };
-  }, [active_skill, activity, router, user_id]);
+  }, [active_skill, activity, addToSkill, router, user_id]);
 
   return (
     <div>

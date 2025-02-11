@@ -27,7 +27,7 @@ export default async function HomePage() {
     <main className="flex h-screen w-full flex-col gap-2">
       {session.user.name}
       <SignOutButton />
-      <Woodcutting id={session.user.id} server_xp={skills.woodcutting} />
+      <Woodcutting id={session.user.id} />
     </main>
   );
 }

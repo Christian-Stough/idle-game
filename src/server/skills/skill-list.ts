@@ -10,7 +10,7 @@ export const woodcutting_activities: TrainingActivity[] = [
     required_xp: 0,
     interval: 5000,
     image_url:
-      "https://oldschool.runescape.wiki/w/Oak_logs#/media/File:Oak_logs_detail.png",
+      "https://cdn.pixabay.com/photo/2016/11/29/05/45/aerial-1867093_960_720.jpg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const woodcutting_activities: TrainingActivity[] = [
     required_xp: 10000,
     interval: 5000,
     image_url:
-      "https://oldschool.runescape.wiki/w/Willow_logs#/media/File:Willow_logs_detail.png",
+      "https://cdn.pixabay.com/photo/2016/11/29/05/45/aerial-1867093_960_720.jpg",
   },
 ];
 

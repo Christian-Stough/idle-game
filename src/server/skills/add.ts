@@ -3,7 +3,7 @@
 import type { SkillTypes } from "types/skills";
 import { db } from "../db";
 
-export async function addXpToSkill(
+export async function addXpToServer(
   id: string,
   skill: SkillTypes,
   amount: number,

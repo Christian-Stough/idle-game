@@ -7,15 +7,11 @@ import { xp_to_levels } from "~/lib/xp-to-level";
 import { getCurrentLevel } from "~/lib/utils";
 import { useSkillsContext } from "../_store/_context";
 
-export default function SkillXpTracker({
-  skills,
-}: {
-  skills: {
-    id: string;
-    woodcutting: number;
-  };
-}) {
+export default function SkillXpTracker() {
   const active_skill = useSkillsContext((state) => state.active_skill);
+  const skills = useSkillsContext((state) => state.skills);
+
+  if (!skills) return null;
 
   if (!active_skill)
     return (

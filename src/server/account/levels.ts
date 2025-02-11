@@ -1,4 +1,3 @@
-import { xp_to_levels } from "~/lib/xp-to-level";
 import { db } from "../db";
 import { getCurrentLevel } from "~/lib/utils";
 
